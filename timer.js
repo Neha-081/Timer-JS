@@ -13,10 +13,10 @@ if(callbacks){
     }
     start=()=>{
         if(this.onStart){
-            this.onStart()
+            this.onStart(this.timeRemaining)
         }
         this.tick()    //to start instantly
-        this.interval=setInterval(this.tick,1000);
+        this.interval=setInterval(this.tick,20);
     }
     pause=()=>{
         clearInterval(this.interval)
@@ -28,10 +28,10 @@ if(callbacks){
                 this.onComplete()
             }
         }else{
-            this.timeRemaining = this.timeRemaining-1
+            this.timeRemaining = this.timeRemaining-0.02;
             //this will set the time       this will get the time
             if(this.onTick){
-                this.onTick()
+                this.onTick(this.timeRemaining)
             }
         }
 
@@ -41,7 +41,7 @@ if(callbacks){
     
     }
     set timeRemaining(time){
-      this.durationInput.value=time;
+      this.durationInput.value=time.toFixed(2);
     }
   
 }
